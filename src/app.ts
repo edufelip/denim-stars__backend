@@ -1,13 +1,11 @@
 import express from 'express'
-// import routes from './routes'
+import { router } from './routes/routes'
+import { router as productRoutes } from './routes/productRoutes'
 
 const app = express()
 
 app.use(express.json())
-// app.use(routes)
+app.use(router)
+app.use('/product', productRoutes)
 
-app.get('/', (req, res) => {
-  return res.json('opa')
-})
-
-app.listen(3333)
+export { app }
