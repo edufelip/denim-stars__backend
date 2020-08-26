@@ -1,3 +1,5 @@
 /dist
 node_modules
 .env
+src/assets/*
+src/tests/coverage

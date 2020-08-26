@@ -1,7 +1,7 @@
 import express from 'express'
 import { router } from './routes/routes'
-import { router as productRoutes } from './routes/productRoutes'
-import { router as userRoutes } from './routes/userRoutes'
+import { router as productRouter } from './routes/productRoutes'
+import { router as userRouter } from './routes/userRoutes'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 dotenv.config()
@@ -21,12 +21,24 @@ mongoose.connect(
     }
   }
 )
+class AppController {
+  public express
+  constructor() {
+    this.express = express()
+    this.middlewares()
+    this.routes()
+  }
 
-const app = express()
+  middlewares() {
+    this.express.use(express.json())
+  }
 
-app.use(express.json())
-app.use(router)
-app.use('/product', productRoutes)
-app.use('/users', userRoutes)
+  routes() {
+    this.express.use(router)
+    this.express.use('/product', productRouter)
+    this.express.use('/users', userRouter)
+  }
+}
 
+const app = new AppController().express
 export { app }

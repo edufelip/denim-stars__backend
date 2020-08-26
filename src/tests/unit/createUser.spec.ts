@@ -3,6 +3,13 @@ import request from 'supertest'
 import { app } from '../../app'
 import { createUserUseCase } from '@controllers/createUser'
 import User from '@schemas/User'
+import faker from 'faker'
+
+const user = {
+  name: faker.name.findName(),
+  email: faker.internet.email().toLowerCase(),
+  password: faker.internet.password()
+}
 
 describe('createUser', () => {
   beforeAll(async () => {
@@ -23,13 +30,8 @@ describe('createUser', () => {
   })
 
   it('should create and save new user', async () => {
-    const user = {
-      name: 'Edu',
-      email: 'edu_felip@hotmail.com',
-      password: '123'
-    }
     await createUserUseCase.execute(user)
-    const foundUser = await User.findOne({ name: 'Edu' })
+    const foundUser = await User.findOne({ name: user.name })
     expect(foundUser).toEqual(
       expect.objectContaining({
         email: user.email,
@@ -37,15 +39,34 @@ describe('createUser', () => {
         password: user.password
       })
     )
-    const response = await request(app).post('users').send(user)
-    expect(response.status).toBe(200)
+    // const response = await request(app).post('users').send(user)
+    // expect(response.status).toBe(200)
   })
   it('should fail to create user with empty email', async () => {
-    const user = {
-      name: 'Edu',
-      email: '',
-      password: '123'
+    let err
+    try {
+      await createUserUseCase.execute({ ...user, email: '' })
+    } catch (error) {
+      err = error
     }
-    await createUserUseCase.execute(user)
+    expect(err).not.toBeNull()
+  })
+  it('should fail to create user with empty password', async () => {
+    let err
+    try {
+      await createUserUseCase.execute({ ...user, password: '' })
+    } catch (error) {
+      err = error
+    }
+    expect(err).not.toBeNull()
+  })
+  it('should fail to create user with empty name', async () => {
+    let err
+    try {
+      await createUserUseCase.execute({ ...user, name: '' })
+    } catch (error) {
+      err = error
+    }
+    expect(err).not.toBeNull()
   })
 })
