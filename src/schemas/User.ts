@@ -1,8 +1,9 @@
 import mongoose, { Document, Schema } from 'mongoose'
+import { UserModel } from '@models/User'
 
-type Contact = Document & Record<string, unknown>
+type User = Document & UserModel
 
-const ContactSchema = new Schema(
+const UserSchema = new Schema(
   {
     name: {
       type: String,
@@ -16,16 +17,14 @@ const ContactSchema = new Schema(
       unique: true,
       required: true
     },
-    tags: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'Tag'
-      }
-    ]
+    password: {
+      type: String,
+      required: true
+    }
   },
   {
     timestamps: true
   }
 )
 
-export default mongoose.model<Contact>('Contact', ContactSchema)
+export default mongoose.model<User>('User', UserSchema)

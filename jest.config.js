@@ -8,7 +8,7 @@ module.exports = {
   // automock: false,
 
   // Stop running tests after `n` failures
-  // bail: 0,
+  bail: true,
 
   // The directory where Jest should store its cached dependency information
   // cacheDirectory: "C:\\Users\\edu_f\\AppData\\Local\\Temp\\jest",
@@ -20,12 +20,10 @@ module.exports = {
   // collectCoverage: false,
 
   // An array of glob patterns indicating a set of files for which coverage information should be collected
-  collectCoverageFrom: [
-    "src/services/**/*"
-  ],
+  collectCoverageFrom: ['src/services/**/*'],
 
   // The directory where Jest should output its coverage files
-  coverageDirectory: "src/tests/coverage",
+  coverageDirectory: 'src/tests/coverage',
 
   // An array of regexp pattern strings used to skip coverage collection
   // coveragePathIgnorePatterns: [
@@ -36,10 +34,7 @@ module.exports = {
   // coverageProvider: "babel",
 
   // A list of reporter names that Jest uses when writing coverage reports
-  coverageReporters: [
-    "json",
-    "lcov"
-  ],
+  coverageReporters: ['json', 'lcov'],
 
   // An object that configures minimum threshold enforcement for coverage results
   // coverageThreshold: undefined,
@@ -146,10 +141,7 @@ module.exports = {
   // testLocationInResults: false,
 
   // The glob patterns Jest uses to detect test files
-  testMatch: [
-    "<rootDir>/src/tests/*.spec.ts",
-    "<rootDir>/src/tests/**/*.spec.ts"
-  ],
+  testMatch: ['<rootDir>/src/tests/*.spec.ts', '<rootDir>/src/tests/**/*.spec.ts'],
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
   // testPathIgnorePatterns: [
@@ -174,7 +166,7 @@ module.exports = {
   // A map from regular expressions to paths to transformers
   transform: {
     '^.+\\.ts$': 'ts-jest'
-  },
+  }
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
   // transformIgnorePatterns: [

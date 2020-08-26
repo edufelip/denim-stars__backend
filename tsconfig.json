@@ -7,25 +7,19 @@
     "outDir": "./dist",
     "rootDir": "./src",
     "removeComments": true,
-    "typeRoots": [
-      "./node_modules/@types",
-      "./src/@types",
-    ],
+    "typeRoots": ["./node_modules/@types", "./src/@types"],
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "skipLibCheck": true,                     
-    "forceConsistentCasingInFileNames": true,  
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": false,
     "baseUrl": ".",
     "paths": {
-      "@controllers/*": ["./src/controllers/*"],
+      "@controllers/*": ["./src/useCases/*"],
       "@models/*": ["./src/models/*"],
-      "@schemas/*": ["./src/schemas/*"],
-      "@services/*": ["./src/services/*"]
+      "@schemas/*": ["./src/schemas/*"]
     }
   },
-  "include": [
-    "src/**/*"
-  ]
+  "include": ["src/**/*"]
 }

@@ -1,6 +1,6 @@
 import mongoose, { Document, Schema } from 'mongoose'
 
-type Message = Document & {}
+type Message = Document & Record<string, unknown>
 
 const MessageSchema = new Schema(
   {
