@@ -30,7 +30,7 @@ describe('createUser', () => {
   })
 
   it('should create and save new user', async () => {
-    await createUserUseCase.execute(user)
+    await User.create(user)
     const foundUser = await User.findOne({ name: user.name })
     expect(foundUser).toEqual(
       expect.objectContaining({
@@ -39,13 +39,11 @@ describe('createUser', () => {
         password: user.password
       })
     )
-    // const response = await request(app).post('users').send(user)
-    // expect(response.status).toBe(200)
   })
   it('should fail to create user with empty email', async () => {
     let err
     try {
-      await createUserUseCase.execute({ ...user, email: '' })
+      await User.create({ ...user, email: '' })
     } catch (error) {
       err = error
     }
@@ -54,7 +52,7 @@ describe('createUser', () => {
   it('should fail to create user with empty password', async () => {
     let err
     try {
-      await createUserUseCase.execute({ ...user, password: '' })
+      await User.create({ ...user, password: '' })
     } catch (error) {
       err = error
     }
@@ -63,7 +61,7 @@ describe('createUser', () => {
   it('should fail to create user with empty name', async () => {
     let err
     try {
-      await createUserUseCase.execute({ ...user, name: '' })
+      await User.create({ ...user, name: '' })
     } catch (error) {
       err = error
     }

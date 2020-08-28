@@ -7,8 +7,4 @@ router.get('/', (req, res) => {
   return res.json('foi')
 })
 
-router.post('/', (req, res) => {
-  return createUserController.handle(req, res)
-})
-
 export { router }

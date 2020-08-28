@@ -1,4 +1,5 @@
 import { Router } from 'express'
+import { createUserController } from '@controllers/createUser'
 
 const router = Router()
 
@@ -11,7 +12,7 @@ router.get('/new', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  return res.json('create new user')
+  return createUserController.handle(req, res)
 })
 
 router.get('/:id', (req, res) => {
