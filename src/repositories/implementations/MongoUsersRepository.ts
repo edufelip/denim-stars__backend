@@ -9,6 +9,11 @@ export class MongoUsersRepository implements IUserRepository {
     return user
   }
 
+  async findById(id: string): Promise<UserModel> {
+    const user = await User.findById(id)
+    return user
+  }
+
   async save(user: CreateUserRequestDTO): Promise<void> {
     await User.create(user)
   }
