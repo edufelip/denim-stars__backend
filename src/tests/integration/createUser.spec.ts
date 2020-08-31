@@ -33,10 +33,22 @@ describe('createUser', () => {
     await request(app).post('/users').send(user).expect(201)
   })
 
-  it('should access route and not create a new user', async () => {
+  it('should access route but deny to create a new user (empty name)', async () => {
     await request(app)
       .post('/users')
       .send({ ...user, name: '' })
+      .expect(400)
+  })
+  it('should access route but deny to create a new user (empty email)', async () => {
+    await request(app)
+      .post('/users')
+      .send({ ...user, email: '' })
+      .expect(400)
+  })
+  it('should access route but deny to create a new user (empty password)', async () => {
+    await request(app)
+      .post('/users')
+      .send({ ...user, password: '' })
       .expect(400)
   })
 })

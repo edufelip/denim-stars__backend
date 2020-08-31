@@ -12,4 +12,8 @@ export class MongoUsersRepository implements IUserRepository {
   async save(user: CreateUserRequestDTO): Promise<void> {
     await User.create(user)
   }
+
+  async delete(id: string): Promise<void> {
+    await User.findByIdAndDelete(id)
+  }
 }
