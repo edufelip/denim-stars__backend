@@ -1,8 +1,7 @@
 import mongoose from 'mongoose'
 import request from 'supertest'
 import { app } from '../../app'
-import { createUserUseCase } from '@controllers/createUser'
-import User from 'src/db/schemas/User'
+import User from '../../db/schemas/User'
 import faker from 'faker'
 
 const user = {

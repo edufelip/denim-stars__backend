@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
-import User from 'src/db/schemas/User'
 import faker from 'faker'
+import User from '../../db/schemas/User'
 
 const user = {
   name: faker.name.findName(),

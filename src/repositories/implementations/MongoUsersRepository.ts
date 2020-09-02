@@ -1,7 +1,7 @@
 import { IUserRepository } from '../IUserRepository'
-import { UserModel } from 'src/db/models/User'
-import User from 'src/db/schemas/User'
-import { CreateUserRequestDTO } from 'src/useCases/createUser/CreateUserDTO'
+import { UserModel } from '../../db/models/User'
+import User from '../../db/schemas/User'
+import { CreateUserRequestDTO } from '../../useCases/createUser/CreateUserDTO'
 
 export class MongoUsersRepository implements IUserRepository {
   async findByEmail(email: string): Promise<UserModel> {

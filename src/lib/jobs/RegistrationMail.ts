@@ -1,5 +1,5 @@
-import { MailtrapMailProvider } from 'src/providers/implementations/MailtrapMailProvider'
-import { IMessage } from 'src/providers/IMailProvider'
+import { MailtrapMailProvider } from '../../providers/implementations/MailtrapMailProvider'
+import { IMessage } from '../../providers/IMailProvider'
 
 const mailtrapMailProvider = new MailtrapMailProvider()
 

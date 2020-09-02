@@ -1,6 +1,6 @@
-import { IUserRepository } from 'src/repositories/IUserRepository'
+import { IUserRepository } from '../../repositories/IUserRepository'
 import { CreateUserRequestDTO } from './CreateUserDTO'
-import { IMailProvider, IMessage } from 'src/providers/IMailProvider'
+import { IMailProvider, IMessage } from '../../providers/IMailProvider'
 import Queue from '../../lib/Queue'
 import 'dotenv/config'
 
