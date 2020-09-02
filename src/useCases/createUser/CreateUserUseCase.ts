@@ -1,8 +1,8 @@
 import { IUserRepository } from 'src/repositories/IUserRepository'
 import { CreateUserRequestDTO } from './CreateUserDTO'
-import { IMailProvider } from 'src/providers/IMailProvider'
-import dotenv from 'dotenv'
-dotenv.config()
+import { IMailProvider, IMessage } from 'src/providers/IMailProvider'
+import Queue from '../../lib/Queue'
+import 'dotenv/config'
 
 export class CreateUserUseCase {
   private userRepository: IUserRepository
@@ -16,7 +16,8 @@ export class CreateUserUseCase {
     const userExists = await this.userRepository.findByEmail(data.email)
     if (userExists) throw new Error('User already exists')
     await this.userRepository.save(data)
-    this.mailProvider.sendMail({
+
+    const message: IMessage = {
       to: {
         name: data.name,
         email: data.email
@@ -27,6 +28,8 @@ export class CreateUserUseCase {
       },
       subject: 'Your account has been created',
       body: 'Welcome to Denim Stars, you can now login to our platform'
-    })
+    }
+
+    await Queue.add('RegistrationMail', message)
   }
 }

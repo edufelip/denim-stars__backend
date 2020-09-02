@@ -1,7 +1,7 @@
 import { CreateUserUseCase } from './CreateUserUseCase'
 import { MongoUsersRepository } from '../../repositories/implementations/MongoUsersRepository'
 import { CreateUserController } from './CreateUserController'
-import { MailtrapMailProvider } from 'src/providers/implementations/MailtrapMailProvider'
+import { MailtrapMailProvider } from '../../providers/implementations/MailtrapMailProvider'
 
 const mongoUsersRepository = new MongoUsersRepository()
 const mailtrapMailProvider = new MailtrapMailProvider()

@@ -1,5 +1,5 @@
 import mongoose, { Document, Schema } from 'mongoose'
-import { UserModel } from '@models/User'
+import { UserModel } from 'src/db/models/User'
 import bcrypt from 'bcrypt'
 
 type User = Document & UserModel

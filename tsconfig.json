@@ -17,8 +17,8 @@
     "baseUrl": ".",
     "paths": {
       "@controllers/*": ["./src/useCases/*"],
-      "@models/*": ["./src/models/*"],
-      "@schemas/*": ["./src/schemas/*"]
+      "@models/*": ["src/db/models/*"],
+      "@schemas/*": ["src/db/schemas/*"]
     }
   },
   "include": ["src/**/*"]

@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-import User from '@schemas/User'
+import User from 'src/db/schemas/User'
 import faker from 'faker'
 
 const user = {

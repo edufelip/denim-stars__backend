@@ -1,4 +1,4 @@
-import { UserModel } from '@models/User'
+import { UserModel } from 'src/db/models/User'
 import { CreateUserRequestDTO } from 'src/useCases/createUser/CreateUserDTO'
 
 export interface IUserRepository {

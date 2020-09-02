@@ -3,15 +3,15 @@ import { router } from './routes/routes'
 import { router as productRouter } from './routes/productRoutes'
 import { router as userRouter } from './routes/userRoutes'
 import mongoose from 'mongoose'
-import dotenv from 'dotenv'
-dotenv.config()
+import 'dotenv/config'
 
 mongoose.connect(
   process.env.MONGO_URL,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useCreateIndex: true
+    useCreateIndex: true,
+    useFindAndModify: false
   },
   (err) => {
     if (err) {
