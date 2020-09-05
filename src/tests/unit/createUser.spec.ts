@@ -1,12 +1,7 @@
 import mongoose from 'mongoose'
-import faker from 'faker'
 import User from '../../db/schemas/User'
-
-const user = {
-  name: faker.name.findName(),
-  email: faker.internet.email().toLowerCase(),
-  password: faker.internet.password()
-}
+import { UserModel } from '../../db/models/User'
+import factory from '../factories'
 
 describe('createUser', () => {
   beforeAll(async () => {
@@ -27,7 +22,7 @@ describe('createUser', () => {
   })
 
   it('should create and save new user', async () => {
-    await User.create(user)
+    const user: UserModel = await factory.create('User')
     const foundUser = await User.findOne({ name: user.name })
     expect(foundUser).toEqual(
       expect.objectContaining({
@@ -40,7 +35,7 @@ describe('createUser', () => {
   it('should fail to create user with empty email', async () => {
     let err
     try {
-      await User.create({ ...user, email: '' })
+      await factory.create('User', { email: '' })
     } catch (error) {
       err = error
     }
@@ -49,7 +44,7 @@ describe('createUser', () => {
   it('should fail to create user with empty password', async () => {
     let err
     try {
-      await User.create({ ...user, password: '' })
+      await factory.create('User', { password: '' })
     } catch (error) {
       err = error
     }
@@ -58,7 +53,7 @@ describe('createUser', () => {
   it('should fail to create user with empty name', async () => {
     let err
     try {
-      await User.create({ ...user, name: '' })
+      await factory.create('User', { name: '' })
     } catch (error) {
       err = error
     }

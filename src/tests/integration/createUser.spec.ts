@@ -2,12 +2,13 @@ import mongoose from 'mongoose'
 import request from 'supertest'
 import { app } from '../../app'
 import User from '../../db/schemas/User'
-import faker from 'faker'
+import factory from '../factories'
+import { UserModel } from '@models/User'
 
 const user = {
-  name: faker.name.findName(),
-  email: faker.internet.email().toLowerCase(),
-  password: faker.internet.password()
+  name: 'example name',
+  email: 'example_email@yahoo.com',
+  password: 'examplepassword123'
 }
 
 describe('createUser', () => {
