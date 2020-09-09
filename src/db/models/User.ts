@@ -1,5 +1,5 @@
 export class UserModel {
-  public readonly _id: string
+  public readonly _id?: string
 
   public name: string
 

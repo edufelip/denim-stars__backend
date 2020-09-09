@@ -2,11 +2,10 @@ import mongoose from 'mongoose'
 import request from 'supertest'
 import { app } from '../../app'
 import User from '../../db/schemas/User'
-import factory from '../factories'
 import { UserModel } from '@models/User'
 
-const user = {
-  name: 'example name',
+const user: UserModel = {
+  name: 'example_name',
   email: 'example_email@yahoo.com',
   password: 'examplepassword123'
 }

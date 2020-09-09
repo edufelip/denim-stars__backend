@@ -1,8 +1,10 @@
-import mongoose from 'mongoose'
+import mongoose, { Document } from 'mongoose'
 import faker from 'faker'
-import User from '../../db/schemas/User'
+import User from '@schemas/User'
 import factory from '../factories'
 import { UserModel } from '@models/User'
+
+type UserType = UserModel & Document
 
 describe('updateUser', () => {
   beforeAll(async () => {
@@ -23,54 +25,61 @@ describe('updateUser', () => {
   })
 
   it("should update user's name", async () => {
-    const user: UserModel = await factory.create('User')
-    const oldName = user.name
-    await User.update(
-      { name: user.name },
+    const user: UserType = await factory.create('User')
+    const newName = faker.name.findName()
+    await User.updateOne(
+      { _id: user._id },
       {
-        $set: {
-          name: faker.name.findName()
-        }
+        $set: { name: newName }
       }
     )
-    expect(oldName).not.toEqual(user.name)
+    const updatedUser = await User.findById(user._id)
+    expect(updatedUser).toEqual(
+      expect.objectContaining({
+        name: newName
+      })
+    )
   })
   it("should update user's email", async () => {
-    const user: UserModel = await factory.create('User')
-    const oldEmail = user.name
-    await User.update(
+    const user: UserType = await factory.create('User')
+    const newEmail = faker.internet.email().toLowerCase()
+    await User.updateOne(
       { name: user.name },
       {
-        $set: {
-          email: faker.internet.email()
-        }
+        $set: { email: newEmail }
       }
     )
-    expect(oldEmail).not.toEqual(user.email)
+    const updatedUser = await User.findById(user._id)
+    expect(updatedUser).toEqual(
+      expect.objectContaining({
+        email: newEmail
+      })
+    )
   })
   it("should update user's password", async () => {
-    const user: UserModel = await factory.create('User')
-    const oldPass = user.name
-    await User.update(
+    const user: UserType = await factory.create('User')
+    const newPass = faker.internet.password()
+    await User.updateOne(
       { name: user.name },
       {
-        $set: {
-          password: faker.internet.password()
-        }
+        $set: { password: newPass }
       }
     )
-    expect(oldPass).not.toEqual(user.password)
+    const updatedUser = await User.findById(user._id)
+    expect(updatedUser).toEqual(
+      expect.objectContaining({
+        password: newPass
+      })
+    )
   })
   it('should fail to update user with empty name', async () => {
-    const user: UserModel = await factory.create('User')
-    let error
+    const user: UserType = await factory.create('User')
+    let error: Error
     try {
-      User.update(
-        { name: user.name },
+      await User.updateOne(
+        { _id: user._id },
         {
-          $set: {
-            name: ''
-          }
+          $set: { name: '' }
         }
       )
     } catch (err) {
@@ -79,15 +88,13 @@ describe('updateUser', () => {
     expect(error).not.toBeNull()
   })
   it('should fail to update user with empty email', async () => {
-    const user: UserModel = await factory.create('User')
+    const user: UserType = await factory.create('User')
     let error
     try {
-      User.update(
+      await User.updateOne(
         { name: user.name },
         {
-          $set: {
-            email: ''
-          }
+          $set: { email: '' }
         }
       )
     } catch (err) {
@@ -96,15 +103,13 @@ describe('updateUser', () => {
     expect(error).not.toBeNull()
   })
   it('should fail to update user with empty password', async () => {
-    const user: UserModel = await factory.create('User')
+    const user: UserType = await factory.create('User')
     let error
     try {
-      User.update(
+      await User.updateOne(
         { name: user.name },
         {
-          $set: {
-            password: ''
-          }
+          $set: { password: '' }
         }
       )
     } catch (err) {
