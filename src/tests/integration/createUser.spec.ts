@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 import request from 'supertest'
 import { app } from '../../app'
-import User from '../../db/schemas/User'
+import User from '@schemas/User'
 import { UserModel } from '@models/User'
 
 const user: UserModel = {

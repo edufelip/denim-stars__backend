@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
-import User from '../../db/schemas/User'
-import { UserModel } from '../../db/models/User'
+import User from '@schemas/User'
+import { UserModel } from '@models/User'
 import factory from '../factories'
 
 describe('createUser', () => {
@@ -33,7 +33,7 @@ describe('createUser', () => {
     )
   })
   it('should fail to create user with empty email', async () => {
-    let err
+    let err: Error
     try {
       await factory.create('User', { email: '' })
     } catch (error) {
@@ -42,7 +42,7 @@ describe('createUser', () => {
     expect(err).not.toBeNull()
   })
   it('should fail to create user with empty password', async () => {
-    let err
+    let err: Error
     try {
       await factory.create('User', { password: '' })
     } catch (error) {
@@ -51,7 +51,7 @@ describe('createUser', () => {
     expect(err).not.toBeNull()
   })
   it('should fail to create user with empty name', async () => {
-    let err
+    let err: Error
     try {
       await factory.create('User', { name: '' })
     } catch (error) {

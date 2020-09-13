@@ -1,8 +1,8 @@
 import mongoose from 'mongoose'
-import User from '@schemas/User'
 import factory from '../factories'
 import faker from 'faker'
-import { UserModel } from '@models/User'
+import Product from '@schemas/Product'
+import { ProductModel } from '@models/Product'
 
 describe('deleteUser', () => {
   beforeAll(async () => {
@@ -20,20 +20,20 @@ describe('deleteUser', () => {
     await mongoose.connection.close()
   })
   afterEach(async () => {
-    await User.deleteMany({})
+    await Product.deleteMany({})
   })
 
-  it('should delete existing user', async () => {
-    const user: UserModel = await factory.create('User')
-    await User.findOneAndRemove({ name: user.name })
-    const users = await User.find({})
-    expect(users).toEqual(expect.arrayContaining([]))
+  it('should delete existing product', async () => {
+    const product: ProductModel = await factory.create('Product')
+    await Product.findOneAndRemove({ name: product.name })
+    const products = await Product.find({})
+    expect(products).toEqual(expect.arrayContaining([]))
   })
-  it('should fail to delete non existing user', async () => {
+  it('should fail to delete non existing product', async () => {
     let err: Error
-    const randomName = faker.name.findName()
+    const randomName = faker.commerce.productName()
     try {
-      await User.findOneAndRemove({ name: randomName })
+      await Product.findOneAndRemove({ name: randomName })
     } catch (error) {
       err = error
     }

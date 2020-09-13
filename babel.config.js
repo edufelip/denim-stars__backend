@@ -17,7 +17,8 @@ module.exports = {
         alias: {
           '@models': './src/models',
           '@controllers': './src/useCases',
-          '@schemas': './src/schemas'
+          '@schemas': './src/schemas',
+          '@repos': './src/repositories'
         }
       }
     ]

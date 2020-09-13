@@ -1,24 +1,23 @@
+import { ProductModel } from '@models/Product'
 import mongoose, { Document, Schema } from 'mongoose'
 
-type Contact = Document & Record<string, unknown>
+type Product = Document & ProductModel
 
-const ContactSchema = new Schema(
+const ProductSchema = new Schema(
   {
     name: {
       type: String,
       trim: true,
-      require: true
+      required: true
     },
-    sizes: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Size'
-      }
-    ]
+    price: {
+      type: String,
+      required: true
+    }
   },
   {
     timestamps: true
   }
 )
 
-export default mongoose.model<Contact>('Contact', ContactSchema)
+export default mongoose.model<Product>('Product', ProductSchema)

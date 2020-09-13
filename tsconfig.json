@@ -18,7 +18,8 @@
     "paths": {
       "@controllers/*": ["./src/useCases/*"],
       "@models/*": ["src/db/models/*"],
-      "@schemas/*": ["src/db/schemas/*"]
+      "@schemas/*": ["src/db/schemas/*"],
+      "@repos/*": ["src/repositories/*"]
     }
   },
   "include": ["src/**/*"]
