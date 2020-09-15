@@ -17,7 +17,7 @@ describe('createUser', () => {
   afterAll(async () => {
     await mongoose.connection.close()
   })
-  beforeEach(async () => {
+  afterEach(async () => {
     await User.deleteMany({})
   })
 
