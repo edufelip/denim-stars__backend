@@ -43,24 +43,6 @@ describe('updateUser', () => {
       })
     )
   })
-  it("should update user's email", async () => {
-    const user: UserType = await factory.create('User')
-    const newEmail = faker.internet.email().toLowerCase()
-    const updatedUser = await User.findByIdAndUpdate(
-      user._id,
-      {
-        $set: {
-          email: newEmail
-        }
-      },
-      { new: true }
-    )
-    expect(updatedUser).toEqual(
-      expect.objectContaining({
-        email: newEmail
-      })
-    )
-  })
   it("should update user's password", async () => {
     const user: UserType = await factory.create('User')
     const newPass = faker.internet.password()

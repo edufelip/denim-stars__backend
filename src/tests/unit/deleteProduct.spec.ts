@@ -4,7 +4,7 @@ import faker from 'faker'
 import Product from '@schemas/Product'
 import { ProductModel } from '@models/Product'
 
-describe('deleteUser', () => {
+describe('deleteProduct', () => {
   beforeAll(async () => {
     if (!process.env.MONGO_URL) {
       throw new Error('MongoDB server not initialized')
