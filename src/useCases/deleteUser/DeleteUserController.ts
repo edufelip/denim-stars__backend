@@ -10,7 +10,7 @@ export class DeleteUserController {
     const id = req.params.id
     try {
       await this.deleteUserUseCase.execute(id)
-      return res.status(201).send('user deleted')
+      return res.status(200).send('user deleted')
     } catch (err) {
       return res.status(400).send(err.message || 'Unexpected error')
     }

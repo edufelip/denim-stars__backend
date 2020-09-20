@@ -1,7 +1,7 @@
-import { MongoUsersRepository } from 'src/repositories/implementations/MongoUsersRepository'
+import { MongoUsersRepository } from '../../repositories/implementations/MongoUsersRepository'
 import { DeleteUserUseCase } from './DeleteUserUseCase'
 import { DeleteUserController } from './DeleteUserController'
-import { MailtrapMailProvider } from 'src/providers/implementations/MailtrapMailProvider'
+import { MailtrapMailProvider } from '../../providers/implementations/MailtrapMailProvider'
 
 const mongoUserRepository = new MongoUsersRepository()
 const mailtrapMailProvider = new MailtrapMailProvider()

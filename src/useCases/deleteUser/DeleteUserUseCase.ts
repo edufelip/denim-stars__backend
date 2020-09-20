@@ -1,5 +1,7 @@
 import { IUserRepository } from 'src/repositories/IUserRepository'
-import { IMailProvider } from 'src/providers/IMailProvider'
+import { IMailProvider, IMessage } from 'src/providers/IMailProvider'
+import Queue from '../../lib/Queue'
+import 'dotenv/config'
 export class DeleteUserUseCase {
   private userRepository: IUserRepository
   private mailProvider: IMailProvider
@@ -12,17 +14,20 @@ export class DeleteUserUseCase {
     const user = await this.userRepository.findById(id)
     if (!user) throw new Error("User doesn't exist")
     await this.userRepository.delete(id)
-    this.mailProvider.sendMail({
+
+    const message: IMessage = {
       to: {
         name: user.name,
         email: user.email
       },
       from: {
-        name: 'Denim Stars',
+        name: 'Denim Starts',
         email: process.env.MAILER_EMAIL
       },
-      subject: 'Your account has been deleted',
-      body: "It's been a pleasure being with you, see you next time"
-    })
+      subject: 'Your account has been created',
+      body: 'Welcome to Denim Stars, you can now login to our platform'
+    }
+
+    // await Queue.add('ExclusionEmail', message)
   }
 }
