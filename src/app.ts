@@ -35,7 +35,7 @@ class AppController {
 
   routes() {
     this.express.use(router)
-    this.express.use('/product', productRouter)
+    this.express.use('/products', productRouter)
     this.express.use('/users', userRouter)
   }
 }
