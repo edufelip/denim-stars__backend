@@ -30,6 +30,6 @@ export class CreateUserUseCase {
       body: 'Welcome to Denim Stars, you can now login to our platform'
     }
 
-    await Queue.add('RegistrationMail', message)
+    // await Queue.add('RegistrationMail', message)
   }
 }

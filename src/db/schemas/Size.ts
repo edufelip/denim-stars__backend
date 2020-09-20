@@ -3,7 +3,7 @@ import mongoose, { Document, Schema } from 'mongoose'
 type Size = Document & Record<string, unknown>
 
 const SizeSchema = new Schema({
-  amount: {
+  number: {
     type: Number
   }
 })
