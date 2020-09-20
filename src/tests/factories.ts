@@ -1,11 +1,12 @@
 import factory from 'factory-girl'
 import User from '@schemas/User'
 import Product from '@schemas/Product'
+import faker from 'faker'
 
 factory.define('User', User, {
-  name: 'example name',
-  email: 'example_email@yahoo.com',
-  password: 'examplepassword123'
+  name: faker.name.findName(),
+  email: faker.internet.email(),
+  password: faker.internet.password()
 })
 
 factory.define('Product', Product, {
