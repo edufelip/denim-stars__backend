@@ -4,8 +4,11 @@ import mongoose, { Document, Schema } from 'mongoose'
 type Size = Document & SizeModel
 
 const SizeSchema = new Schema({
-  number: {
-    type: Number
+  name: {
+    type: String,
+    trim: true,
+    unique: true,
+    required: true
   }
 })
 

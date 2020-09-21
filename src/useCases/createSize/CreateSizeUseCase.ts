@@ -7,9 +7,9 @@ export class CreateSizeUseCase {
     this.sizeRepository = sizeRepository
   }
 
-  async execute(number: SizeModel): Promise<void> {
-    const sizeExists = this.sizeRepository.findByNumber(number.number)
+  async execute(size: SizeModel): Promise<void> {
+    const sizeExists = await this.sizeRepository.findByName(size.name)
     if (sizeExists) throw new Error('Size already exists')
-    await this.sizeRepository.save(number)
+    await this.sizeRepository.save(size)
   }
 }

@@ -3,16 +3,21 @@ import { ISizeRepository } from '@repos/ISizeRepository'
 import Size from '@schemas/Size'
 
 export class MongoSizesRepository implements ISizeRepository {
-  async findByNumber(number: number): Promise<SizeModel> {
-    const size = Size.findOne({ number: number })
+  async findByName(name: string): Promise<SizeModel> {
+    const size = Size.findOne({ name: name })
     return size
   }
 
-  async save(number: SizeModel): Promise<void> {
-    await Size.create(number)
+  async findById(id: string): Promise<SizeModel> {
+    const size = Size.findById(id)
+    return size
   }
 
-  async delete(number: number): Promise<void> {
-    await Size.findOneAndDelete({ number: number })
+  async save(name: SizeModel): Promise<void> {
+    await Size.create(name)
+  }
+
+  async delete(id: string): Promise<void> {
+    await Size.findByIdAndRemove(id)
   }
 }

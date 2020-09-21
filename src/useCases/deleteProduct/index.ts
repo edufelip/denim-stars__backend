@@ -6,6 +6,6 @@ const mongoProductsRepository = new MongoProductsRepository()
 
 const deleteProductUseCase = new DeleteProductUseCase(mongoProductsRepository)
 
-const deleteProductsController = new DeleteProductController(deleteProductUseCase)
+const deleteProductController = new DeleteProductController(deleteProductUseCase)
 
-export { deleteProductUseCase, deleteProductsController }
+export { deleteProductUseCase, deleteProductController }

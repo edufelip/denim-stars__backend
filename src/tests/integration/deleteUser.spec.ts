@@ -5,8 +5,10 @@ import User from '@schemas/User'
 import { UserModel } from '@models/User'
 import factory from '../factories'
 import faker from 'faker'
+import 'dotenv/config'
 
 describe('deleteUser', () => {
+  process.env.MOCK_MODE = 'true'
   beforeAll(async () => {
     if (!process.env.MONGO_URL) {
       throw new Error('MongoDB server not initialized')

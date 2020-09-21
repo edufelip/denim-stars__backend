@@ -1,7 +1,8 @@
 import { SizeModel } from '@models/Size'
 
 export interface ISizeRepository {
-  findByNumber(number: number): Promise<SizeModel>
-  save(number: SizeModel): Promise<void>
-  delete(number: number): Promise<void>
+  findByName(name: string): Promise<SizeModel>
+  findById(id: string): Promise<SizeModel>
+  save(name: SizeModel): Promise<void>
+  delete(id: string): Promise<void>
 }

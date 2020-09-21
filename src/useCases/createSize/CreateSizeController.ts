@@ -1,5 +1,6 @@
 import { CreateSizeUseCase } from './CreateSizeUseCase'
 import { Request, Response } from 'express'
+import 'dotenv/config'
 
 export class CreateSizeController {
   private createSizeUseCase: CreateSizeUseCase
@@ -8,9 +9,9 @@ export class CreateSizeController {
   }
 
   async handle(req: Request, res: Response): Promise<Response> {
-    const { number } = req.body
+    const { name } = req.body
     try {
-      await this.createSizeUseCase.execute(number)
+      await this.createSizeUseCase.execute({ name })
       return res.status(201).send('size created')
     } catch (err) {
       return res.status(400).send(err.message || 'Unexpected error')

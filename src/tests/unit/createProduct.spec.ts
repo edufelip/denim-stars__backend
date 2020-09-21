@@ -15,6 +15,7 @@ describe('createProduct', () => {
     })
   })
   afterAll(async () => {
+    await Product.deleteMany({})
     await mongoose.connection.close()
   })
   afterEach(async () => {

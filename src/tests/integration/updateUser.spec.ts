@@ -26,18 +26,21 @@ describe('updateUser', () => {
 
   it('should access route and udpate an user', async () => {
     const newUser: UserModel = await factory.create('User')
-    await request(app)
-      .put(`/users/${newUser._id}`)
-      .send({ name: faker.name.findName(), password: faker.internet.password() })
-      .expect(200)
+    const name = faker.name.findName()
+    const password = faker.internet.password()
+    await request(app).put(`/users/${newUser._id}`).send({ name: name, password: password }).expect(200)
   })
 
   it('should access route and fail to update an user (empty name)', async () => {
     const newUser: UserModel = await factory.create('User')
-    await request(app).put(`/users/${newUser._id}`).send({ name: '', password: faker.internet.password() }).expect(400)
+    const name = ''
+    const password = faker.internet.password()
+    await request(app).put(`/users/${newUser._id}`).send({ name: name, password: password }).expect(400)
   })
   it('should access route and fail to update an user (empty password)', async () => {
     const newUser: UserModel = await factory.create('User')
-    await request(app).put(`/users/${newUser._id}`).send({ name: faker.name.findName(), password: '' }).expect(400)
+    const name = faker.name.findName()
+    const password = ''
+    await request(app).put(`/users/${newUser._id}`).send({ name: name, password: password }).expect(400)
   })
 })

@@ -3,6 +3,7 @@ import request from 'supertest'
 import { app } from '../../app'
 import User from '@schemas/User'
 import { UserModel } from '@models/User'
+import 'dotenv/config'
 
 const user: UserModel = {
   name: 'example_name',
@@ -11,6 +12,7 @@ const user: UserModel = {
 }
 
 describe('createUser', () => {
+  process.env.MOCK_MODE = 'true'
   beforeAll(async () => {
     if (!process.env.MONGO_URL) {
       throw new Error('MongoDB server not initialized')

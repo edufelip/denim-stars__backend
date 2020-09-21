@@ -1,12 +1,14 @@
 import { createProductController } from '@controllers/createProduct'
-import { deleteUserController } from '@controllers/deleteUser'
-import { updateUserController } from '@controllers/updateUser'
+import { updateProductController } from '@controllers/updateProduct'
+import { deleteProductController } from '@controllers/deleteProduct'
+import Product from '@schemas/Product'
 import { Router } from 'express'
 
 const router = Router()
 
-router.get('/', (req, res) => {
-  return res.json('list all products')
+router.get('/', async (req, res) => {
+  const products = await Product.find({})
+  return res.json(products)
 })
 
 router.get('/new', (req, res) => {
@@ -26,11 +28,11 @@ router.get('/:id/edit', (req, res) => {
 })
 
 router.put('/:id', (req, res) => {
-  return updateUserController.handle(req, res)
+  return updateProductController.handle(req, res)
 })
 
 router.delete('/:id', (req, res) => {
-  return deleteUserController.handle(req, res)
+  return deleteProductController.handle(req, res)
 })
 
 export { router }
