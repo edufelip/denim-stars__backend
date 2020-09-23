@@ -1,13 +1,14 @@
+import { StockModel } from '@models/Stock'
 import mongoose, { Document, Schema } from 'mongoose'
 
-type Stock = Document & Record<string, unknown>
+type Stock = Document & StockModel
 
 const StockSchema = new Schema({
-  product_id: {
+  productId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Product'
   },
-  size_id: {
+  sizeId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Size'
   },

@@ -3,6 +3,7 @@ import { router } from './routes/routes'
 import { router as productRouter } from './routes/productRoutes'
 import { router as userRouter } from './routes/userRoutes'
 import { router as sizeRouter } from './routes/sizeRoutes'
+import { router as stockRouter } from './routes/stockRoutes'
 import mongoose from 'mongoose'
 import 'dotenv/config'
 
@@ -39,6 +40,7 @@ class AppController {
     this.express.use('/products', productRouter)
     this.express.use('/users', userRouter)
     this.express.use('/sizes', sizeRouter)
+    this.express.use('/stock', stockRouter)
   }
 }
 
