@@ -8,7 +8,8 @@ export class UpdateProductAmountController {
   }
 
   async handle(req: Request, res: Response): Promise<Response> {
-    const { productId, sizeId, amount } = req.body
+    const productId = req.params.id
+    const { sizeId, amount } = req.body
     if (!productId || !sizeId || !amount) return res.status(400).send("Fields can't be empty")
     try {
       const updatedStock = await this.updateProductAmountUseCase.execute({ productId, sizeId, amount })
