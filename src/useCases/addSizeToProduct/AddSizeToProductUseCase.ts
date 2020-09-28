@@ -7,7 +7,7 @@ export class AddSizeToProductUseCase {
     this.stockRepository = stockRepository
   }
 
-  async execute(productId: string, sizeId: string, amount: number): Promise<void> {
-    await this.stockRepository.save(productId, sizeId, amount)
+  async execute(productId: string, sizeId: string): Promise<void> {
+    await this.stockRepository.save(productId, sizeId)
   }
 }

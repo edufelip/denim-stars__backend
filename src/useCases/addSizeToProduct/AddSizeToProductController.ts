@@ -9,9 +9,9 @@ export class AddSizeToProductController {
   }
 
   async handle(req: Request, res: Response): Promise<Response> {
-    const { productId, sizeId, amount } = req.body
+    const { productId, sizeId } = req.body
     try {
-      await this.addSizeToProductUseCase.execute(productId, sizeId, amount)
+      await this.addSizeToProductUseCase.execute(productId, sizeId)
     } catch (err) {
       return res.status(400).send(err.message || 'Unexpected Error')
     }
