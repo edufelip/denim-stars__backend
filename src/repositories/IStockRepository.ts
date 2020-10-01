@@ -1,7 +1,8 @@
-import { UpdateProductAmountRequestDTO } from '@controllers/updateProductAmount/UpdateProductAmountDTO'
+import { UpdateStockElementRequestDTO } from '@controllers/updateStockElement/UpdateStockElementDTO'
 import { StockModel } from '@models/Stock'
 export interface IStockRepository {
   save(productId: string, sizeId: string): Promise<void>
-  update(data: UpdateProductAmountRequestDTO): Promise<StockModel>
-  findStock(productId: string, sizeId: string): Promise<StockModel>
+  update(data: UpdateStockElementRequestDTO): Promise<StockModel>
+  findById(stockId: string): Promise<StockModel>
+  delete(stockId: string): Promise<void>
 }

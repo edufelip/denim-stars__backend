@@ -1,6 +1,6 @@
 import { IStockRepository } from '@repos/IStockRepository'
 
-export class AddSizeToProductUseCase {
+export class CreateStockElementUseCase {
   private stockRepository: IStockRepository
 
   constructor(stockRepository: IStockRepository) {

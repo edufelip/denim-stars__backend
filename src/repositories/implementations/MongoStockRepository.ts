@@ -1,4 +1,4 @@
-import { UpdateProductAmountRequestDTO } from '@controllers/updateProductAmount/UpdateProductAmountDTO'
+import { UpdateStockElementRequestDTO } from '@controllers/updateStockElement/UpdateStockElementDTO'
 import { StockModel } from '@models/Stock'
 import { IStockRepository } from '@repos/IStockRepository'
 import Stock from '@schemas/Stock'
@@ -9,12 +9,9 @@ export class MongoStockRepository implements IStockRepository {
     await Stock.create({ productId, sizeId, amount })
   }
 
-  async update(data: UpdateProductAmountRequestDTO): Promise<StockModel> {
-    const updatedStock = await Stock.findOneAndUpdate(
-      {
-        productId: data.productId,
-        sizeId: data.sizeId
-      },
+  async update(data: UpdateStockElementRequestDTO): Promise<StockModel> {
+    const updatedStock = await Stock.findByIdAndUpdate(
+      data.id,
       {
         $set: {
           amount: data.amount
@@ -25,11 +22,12 @@ export class MongoStockRepository implements IStockRepository {
     return updatedStock
   }
 
-  async findStock(productId: string, sizeId: string): Promise<StockModel> {
-    const stockExists = await Stock.findOne({
-      productId: productId,
-      sizeId: sizeId
-    })
+  async findById(stockId: string): Promise<StockModel> {
+    const stockExists = await Stock.findById(stockId)
     return stockExists
+  }
+
+  async delete(stockId: string): Promise<void> {
+    await Stock.findByIdAndDelete(stockId)
   }
 }
